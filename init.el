@@ -1,5 +1,6 @@
 ;; -*- lexical-binding: t -*-
 ;; code construct from Steve Purcell, github.com/purcell
+;; and from Chen Bin, github.com/redguardtoo
 
 (setq debug-on-error t)
 
@@ -50,6 +51,7 @@
 
 (require 'init-keymap)
 (require 'init-themes)
+(require 'init-evil)
 (require 'init-vc)
 (require 'init-git)
 (require 'init-projectile)
