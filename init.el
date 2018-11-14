@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t -*-
-;; code struct from Steve Purcell, github.com/purcell
+;; code construct from Steve Purcell, github.com/purcell
 
 (setq debug-on-error t)
 
