@@ -11,7 +11,7 @@
 
 (when (maybe-require-package 'magit-todos)
   (after-load 'magit
-              (magit-todos-mode)))
+    (magit-todos-mode)))
 
 (when (maybe-require-package 'git-commit)
   (add-hook 'git-commit-mode-hook 'goto-address-mode))

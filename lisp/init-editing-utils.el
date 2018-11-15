@@ -85,9 +85,10 @@
   (dolist (hook '(prog-mode-hook html-mode-hook conf-mode-hook))
     (add-hook hook 'symbol-overlay-mode))
   (after-load 'symbol-overlay
-              (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
-              (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
-              (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
+    (diminish 'symbol-overlay-mode)
+    (define-key symbol-overlay-mode-map (kbd "M-i") 'symbol-overlay-put)
+    (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
+    (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev)))
 
 ;;----------------------------------------------------------------------------
 ;; Zap *up* to char is a handy pair for zap-to-char
@@ -100,11 +101,11 @@
 (setq browse-kill-ring-separator "\f")
 (global-set-key (kbd "M-Y") 'browse-kill-ring)
 (after-load 'browse-kill-ring
-            (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
-            (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
-            (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
+  (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
+  (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
+  (define-key browse-kill-ring-mode-map (kbd "M-p") 'browse-kill-ring-previous))
 (after-load 'page-break-lines
-            (push 'browse-kill-ring-mode page-break-lines-modes))
+  (push 'browse-kill-ring-mode page-break-lines-modes))
 
 
 ;;----------------------------------------------------------------------------
@@ -148,22 +149,20 @@
 (when (maybe-require-package 'avy)
   (global-set-key (kbd "C-;") 'avy-goto-char-timer))
 
-(require-package 'multiple-cursors)
-;; multiple-cursors
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-+") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
-;; From active region to multiple cursors:
-(global-set-key (kbd "C-c m r") 'set-rectangular-region-anchor)
-(global-set-key (kbd "C-c m c") 'mc/edit-lines)
-(global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
-(global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines)
-
-
-;; Train myself to use M-f and M-b instead
-(global-unset-key [M-left])
-(global-unset-key [M-right])
+(when (maybe-require-package 'multiple-cursors)
+  ;; multiple-cursors
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+  ;; From active region to multiple cursors:
+  (global-set-key (kbd "C-c m r") 'set-rectangular-region-anchor)
+  (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+  (global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
+  (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines)
+  ;; Train myself to use M-f and M-b instead
+  (global-unset-key [M-left])
+  (global-unset-key [M-right]))
 
 
 
@@ -181,21 +180,24 @@
 ;; Page break lines
 ;;----------------------------------------------------------------------------
 (when (maybe-require-package 'page-break-lines)
-  (add-hook 'after-init-hook 'global-page-break-lines-mode))
+  (add-hook 'after-init-hook 'global-page-break-lines-mode)
+  (after-load 'page-break-lines
+    (diminish 'page-break-lines-mode)))
 
 ;;----------------------------------------------------------------------------
 ;; Shift lines up and down with M-up and M-down. When paredit is enabled,
 ;; it will use those keybindings. For this reason, you might prefer to
 ;; use M-S-up and M-S-down, which will work even in lisp modes.
 ;;----------------------------------------------------------------------------
-(require-package 'move-dup)
-(global-set-key [M-up] 'md/move-lines-up)
-(global-set-key [M-down] 'md/move-lines-down)
-(global-set-key [M-S-up] 'md/move-lines-up)
-(global-set-key [M-S-down] 'md/move-lines-down)
+(when (maybe-require-package 'move-dup)
+  (global-set-key [M-up] 'md/move-lines-up)
+  (global-set-key [M-down] 'md/move-lines-down)
+  (global-set-key [M-S-up] 'md/move-lines-up)
+  (global-set-key [M-S-down] 'md/move-lines-down)
 
-(global-set-key (kbd "C-c d") 'md/duplicate-down)
-(global-set-key (kbd "C-c u") 'md/duplicate-up)
+  (global-set-key (kbd "C-c d d") 'md/duplicate-down)
+  (global-set-key (kbd "C-c d u") 'md/duplicate-up))
+
 
 ;;----------------------------------------------------------------------------
 ;; Fix backward-up-list to understand quotes, see http://bit.ly/h7mdIL
@@ -215,15 +217,18 @@
 ;;----------------------------------------------------------------------------
 ;; Cut/copy the current line if no region is active
 ;;----------------------------------------------------------------------------
-(require-package 'whole-line-or-region)
-(add-hook 'after-init-hook 'whole-line-or-region-mode)
+(when (maybe-require-package 'whole-line-or-region)
+  (after-load 'whole-line-or-region
+    (diminish 'whole-line-or-region-mode))
+  (add-hook 'after-init-hook 'whole-line-or-region-mode))
+
 
 ;; Some local minor modes clash with CUA rectangle selection
 
 (defvar-local sanityinc/suspended-modes-during-cua-rect nil
   "Modes that should be re-activated when cua-rect selection is done.")
 
-(eval-after-load 'cua-rect
+(after-load 'cua-rect
   (advice-add 'cua--deactivate-rectangle :after
               (lambda (&rest _)
                 (dolist (m sanityinc/suspended-modes-during-cua-rect)
@@ -232,7 +237,7 @@
 
 (defun sanityinc/suspend-mode-during-cua-rect-selection (mode-name)
   "Add an advice to suspend `MODE-NAME' while selecting a CUA rectangle."
-  (eval-after-load 'cua-rect
+  (after-load 'cua-rect
     (advice-add 'cua--activate-rectangle :after
                 (lambda (&rest _)
                   (when (bound-and-true-p mode-name)
@@ -293,9 +298,11 @@ With arg N, insert N newlines."
 (require-package 'highlight-escape-sequences)
 (add-hook 'after-init-hook 'hes-mode)
 
-(require-package 'guide-key)
-(setq guide-key/guide-key-sequence t)
-(add-hook 'after-init-hook 'guide-key-mode)
+(when (maybe-require-package 'guide-key)
+  (setq guide-key/guide-key-sequence t)
+  (add-hook 'after-init-hook 'guide-key-mode)
+  (after-load 'guide-key
+    (diminish 'guide-key-mode)))
 
 
 (provide 'init-editing-utils)

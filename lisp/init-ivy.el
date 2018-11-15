@@ -2,22 +2,23 @@
 (when (maybe-require-package 'ivy)
   (add-hook 'after-init-hook 'ivy-mode)
   (after-load 'ivy
-              (setq-default ivy-use-virtual-buffers t
-                            ivy-virtual-abbreviate 'fullpath
-                            ivy-count-format "%d/%d"
-                            projectile-completion-system 'ivy
-                            ivy-magic-tilde nil
-                            ivy-dynamic-exhibit-delay-ms 150
-                            ivy-initial-inputs-alist
-                            '((Man-completion-table . "^")
-                              (woman . "^")))
+    (setq-default ivy-use-virtual-buffers t
+                  ivy-virtual-abbreviate 'fullpath
+                  ivy-count-format "%d/%d"
+                  projectile-completion-system 'ivy
+                  ivy-magic-tilde nil
+                  ivy-dynamic-exhibit-delay-ms 150
+                  ivy-initial-inputs-alist
+                  '((Man-completion-table . "^")
+                    (woman . "^")))
 
-              ;; IDO-style directory navigation
-              (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
-              (define-key ivy-minibuffer-map (kbd "C-j") nil)
-              (dolist (k '("C-RET"))
-                (define-key ivy-minibuffer-map (kbd k) #'ivy-immediate-done))
-              (define-key ivy-minibuffer-map (kbd "<up>") #'ivy-previous-line-or-history))
+    ;; IDO-style directory navigation
+    (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
+    (define-key ivy-minibuffer-map (kbd "C-j") nil)
+    (dolist (k '("C-RET"))
+      (define-key ivy-minibuffer-map (kbd k) #'ivy-immediate-done))
+    (define-key ivy-minibuffer-map (kbd "<up>") #'ivy-previous-line-or-history)
+    (diminish 'ivy-mode))
 
   (defun sanityinc/enable-ivy-flx-matching ()
     "Make `ivy' matching work more like IDO."
@@ -34,18 +35,20 @@
 (when (maybe-require-package 'swiper)
   (define-key global-map (kbd "C-s") 'swiper)
   (after-load 'ivy
-              (defun sanityinc/swiper-at-point (sym)
-                "Use `swiper' to search for the symbol at point."
-                (interactive (list (thing-at-point 'symbol)))
-                (swiper sym))
+    (defun sanityinc/swiper-at-point (sym)
+      "Use `swiper' to search for the symbol at point."
+      (interactive (list (thing-at-point 'symbol)))
+      (swiper sym))
 
-              (define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point)))
+    (define-key ivy-mode-map (kbd "M-s /") 'sanityinc/swiper-at-point)))
 
 ;; counsel configs
 (when (maybe-require-package 'counsel)
   (setq-default counsel-mode-override-describe-bindings t)
-  ;; (define-key global-map (kbd "M-x") 'counsel-M-x)
-  ;; (define-key global-map (kbd "C-x C-f") 'counsel-find-file)
+  (define-key global-map (kbd "M-x") 'counsel-M-x)
+  (define-key global-map (kbd "C-x C-f") 'counsel-find-file)
+  (after-load 'counsel
+    (diminish 'counsel-mode))
   (add-hook 'after-init-hook 'counsel-mode)
 
   (when (maybe-require-package 'projectile)

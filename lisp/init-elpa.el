@@ -68,7 +68,7 @@ locate PACKAGE."
   (let ((available (apply oldfun package args)))
     (prog1 available
       (when (and available (boundp 'package-selected-packages))
-(add-to-list 'sanityinc/required-packages package)))))
+        (add-to-list 'sanityinc/required-packages package)))))
 
 (advice-add 'require-package :around 'sanityinc/note-selected-package)
 

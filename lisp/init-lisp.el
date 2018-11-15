@@ -4,7 +4,7 @@
 (add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ELisp")))
 
 (setq-default initial-scratch-message
-              (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+              (concat ";; Happy hacking, " user-login-name " - Emacs loves you!\n\n"))
 
 
 ;; Make C-x C-e run 'eval-region if the region is active
@@ -219,7 +219,9 @@
     (when (and (buffer-file-name) (string-match-p "\\(color-theme-\\|-theme\\.el\\)" (buffer-file-name)))
       (rainbow-mode)))
   (add-hook 'emacs-lisp-mode-hook 'sanityinc/enable-rainbow-mode-if-theme)
-  (add-hook 'help-mode-hook 'rainbow-mode))
+  (add-hook 'help-mode-hook 'rainbow-mode)
+  (after-load 'rainbow-mode
+    (diminish 'rainbow-mode)))
 
 
 (when (maybe-require-package 'highlight-quoted)

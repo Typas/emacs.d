@@ -27,20 +27,20 @@
 ;; Change some defaults: customize them to override
 (setq-default js2-bounce-indent-p nil)
 (after-load 'js2-mode
-            ;; Disable js2 mode's syntax error highlighting by default...
-            (setq-default js2-mode-show-parse-errors nil
-                          js2-mode-show-strict-warnings nil)
-            ;; ... but enable it if flycheck can't handle javascript
-            (autoload 'flycheck-get-checker-for-buffer "flycheck")
-            (defun sanityinc/enable-js2-checks-if-flycheck-inactive ()
-              (unless (flycheck-get-checker-for-buffer)
-                (set (make-local-variable 'js2-mode-show-parse-errors) t)
-                (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
-            (add-hook 'js2-mode-hook 'sanityinc/enable-js2-checks-if-flycheck-inactive)
+  ;; Disable js2 mode's syntax error highlighting by default...
+  (setq-default js2-mode-show-parse-errors nil
+                js2-mode-show-strict-warnings nil)
+  ;; ... but enable it if flycheck can't handle javascript
+  (autoload 'flycheck-get-checker-for-buffer "flycheck")
+  (defun sanityinc/enable-js2-checks-if-flycheck-inactive ()
+    (unless (flycheck-get-checker-for-buffer)
+      (set (make-local-variable 'js2-mode-show-parse-errors) t)
+      (set (make-local-variable 'js2-mode-show-strict-warnings) t)))
+  (add-hook 'js2-mode-hook 'sanityinc/enable-js2-checks-if-flycheck-inactive)
 
-            (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
+  (add-hook 'js2-mode-hook (lambda () (setq mode-name "JS2")))
 
-            (js2-imenu-extras-setup))
+  (js2-imenu-extras-setup))
 
 ;; js-mode
 (setq-default js-indent-level preferred-javascript-indent-level)
@@ -52,16 +52,16 @@
 (when (and (executable-find "ag")
            (maybe-require-package 'xref-js2))
   (after-load 'js2-mode
-              (define-key js2-mode-map (kbd "M-.") nil)
-              (add-hook 'js2-mode-hook
-                        (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
+    (define-key js2-mode-map (kbd "M-.") nil)
+    (add-hook 'js2-mode-hook
+              (lambda () (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
 
 
 ;;; Coffeescript
 
 (after-load 'coffee-mode
-            (setq coffee-js-mode preferred-javascript-mode
-                  coffee-tab-width preferred-javascript-indent-level))
+  (setq coffee-js-mode preferred-javascript-mode
+        coffee-tab-width preferred-javascript-indent-level))
 
 (when (fboundp 'coffee-mode)
   (add-to-list 'auto-mode-alist '("\\.coffee\\.erb\\'" . coffee-mode)))
@@ -90,15 +90,15 @@
 
 (when (maybe-require-package 'skewer-mode)
   (after-load 'skewer-mode
-              (add-hook 'skewer-mode-hook
-                        (lambda () (inferior-js-keys-mode -1)))))
+    (add-hook 'skewer-mode-hook
+              (lambda () (inferior-js-keys-mode -1)))))
 
 
 (when (maybe-require-package 'add-node-modules-path)
   (after-load 'typescript-mode
-              (add-hook 'typescript-mode-hook 'add-node-modules-path))
+    (add-hook 'typescript-mode-hook 'add-node-modules-path))
   (after-load 'js2-mode
-              (add-hook 'js2-mode-hook 'add-node-modules-path)))
+    (add-hook 'js2-mode-hook 'add-node-modules-path)))
 
 (after-load 'js2-mode
   (after-load 'eglot

@@ -1,5 +1,7 @@
 (setq-default c-default-style "linux"
               c-basic-offset 4)
+(add-hook 'c-mode-hook (lambda () (setq mode-name "C")))
+(add-hook 'c++-mode-hook (lambda () (setq mode-name "C++")))
 
 ;; actually, this is for irony-mode
 (when (maybe-require-package 'irony)

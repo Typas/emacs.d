@@ -41,6 +41,7 @@
 ;; Load configs for specific features and modes
 ;;----------------------------------------------------------------------------
 
+(require-package 'diminish)
 (require-package 'wgrep)
 (require-package 'scratch)
 
@@ -61,6 +62,7 @@
 
 (require 'init-ivy)
 (require 'init-company)
+(require 'init-windows)
 ;; (require 'init-lsp)
 
 (require 'init-editing-utils)

@@ -28,10 +28,10 @@
 
 ;; use emphasis with chinese words
 (after-load 'org
-            (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
-            (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
-            (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-            (org-element-update-syntax))
+  (setcar (nthcdr 0 org-emphasis-regexp-components) " \t('\"{[:nonascii:]")
+  (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,:!?;'\")}\\[[:nonascii:]")
+  (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+  (org-element-update-syntax))
 
 ;; nested todo auto done when children done
 (defun org-summary-todo (n-done n-not-done)
@@ -42,22 +42,22 @@
 
 ;; Re-align tags when window shape changes
 (after-load 'org-agenda
-            (add-hook 'org-agenda-mode-hook
-                      (lambda () (add-hook 'window-configuration-change-hook 'org-agenda-align-tags nil t))))
+  (add-hook 'org-agenda-mode-hook
+            (lambda () (add-hook 'window-configuration-change-hook 'org-agenda-align-tags nil t))))
 
 (after-load 'org
-            (when *is-a-mac*
-              (define-key org-mode-map (kbd "M-h") nil)
-              (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link))
-            (maybe-require-package 'ob-rust)
-            (maybe-require-package 'ob-kotlin)
-            (org-babel-do-load-languages
-             'org-babel-load-languages
-             `((emacs-lisp . t)
-               (haskell . nil)
-               (latex . t)
-               (python . t)
-               (rust . t)
-               (kotlin . t))))
+  (when *is-a-mac*
+    (define-key org-mode-map (kbd "M-h") nil)
+    (define-key org-mode-map (kbd "C-c g") 'org-mac-grab-link))
+  (maybe-require-package 'ob-rust)
+  (maybe-require-package 'ob-kotlin)
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   `((emacs-lisp . t)
+     (haskell . nil)
+     (latex . t)
+     (python . t)
+     (rust . t)
+     (kotlin . t))))
 
 (provide 'init-org)
