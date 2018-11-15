@@ -4,10 +4,10 @@
 (load-theme 'sanityinc-tomorrow-eighties t)
 
 (define-key global-map (kbd "C-c s t") #'switch-theme-variant)
+
 (defvar *current-theme-dark* 'sanityinc-tomorrow-eighties)
 (defvar *current-theme-light* 'solarized-light)
 (defvar *current-theme-variant* 'dark)
-;;;###autoload
 (defun switch-theme-variant ()
   "Switch custom themes between dark and light theme"
   (interactive)

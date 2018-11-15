@@ -1,4 +1,4 @@
-(setq tab-always-indent nil)
+(setq tab-always-indent 'complete)
 (add-to-list 'completion-styles 'initials t)
 
 (when (maybe-require-package 'company)
