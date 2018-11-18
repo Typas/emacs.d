@@ -78,6 +78,7 @@
 (require 'init-kotlin)
 (require 'init-javascript)
 (require 'init-latex)
+(require 'init-markdown)
 
 (require 'init-paredit)
 (require 'init-lisp)
