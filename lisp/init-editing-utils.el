@@ -223,16 +223,6 @@
   (add-hook 'after-init-hook 'whole-line-or-region-mode)
   (after-load 'whole-line-or-region
     (diminish 'whole-line-or-region-local-mode))
-;;;###autoload
-  (defun whole-line-or-region-comment-region (prefix)
-    "Comment region or PREFIX whole lines"
-    (interactive "*p")
-    (whole-line-or-region-call-with-region 'comment-region prefix t))
-;;;###autoload
-  (defun whole-line-or-region-uncomment-region (prefix)
-    "Uncomment region or PREFIX whole lines"
-    (interactive "*p")
-    (whole-line-or-region-call-with-region 'uncomment-region prefix t))
   (define-key global-map (kbd "C-c c") 'whole-line-or-region-comment-region)
   (define-key global-map (kbd "C-c u") 'whole-line-or-region-uncomment-region))
 
