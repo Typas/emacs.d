@@ -13,4 +13,8 @@
   (push 'company-irony company-backends)
   (push 'company-c-headers company-backends))
 
+(after-load 'flycheck
+  (require-package 'flycheck-irony)
+  (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
 (provide 'init-c-and-cpp)
