@@ -77,7 +77,9 @@
 (add-hook 'after-init-hook 'default-text-scale-mode)
 
 
-(require-package 'disable-mouse)
+(when (maybe-require-package 'disable-mouse)
+  (global-disable-mouse-mode)
+  (diminish 'disable-mouse-mode))
 (global-hl-line-mode 1) ; highlight current line
 
 

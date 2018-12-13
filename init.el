@@ -2,7 +2,7 @@
 ;; code construct from Steve Purcell, github.com/purcell
 ;; and from Chen Bin, github.com/redguardtoo
 
-(setq debug-on-error t)
+;; (setq debug-on-error t)
 
 (let ((minver "26.1"))
   (when (version< emacs-version minver)
