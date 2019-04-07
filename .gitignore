@@ -31,3 +31,5 @@ site-lisp/package/
 /irony/
 /games/
 .DS_Store
+/lspsvr/
+/transient/

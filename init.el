@@ -63,7 +63,7 @@
 (require 'init-ivy)
 (require 'init-company)
 (require 'init-windows)
-;; (require 'init-lsp)
+(require 'init-lsp)
 
 (require 'init-editing-utils)
 (require 'init-whitespace)
