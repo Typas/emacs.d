@@ -59,7 +59,7 @@
   (add-hook 'dhall-mode-hook 'stack-exec-path-mode))
 
 ;; (after-load 'haskell-mode
-;;   (after-load 'eglot
+;;   (when (maybe-require-package 'eglot)
 ;;     (add-hook 'haskell-mode-hook 'eglot-ensure)))
 
 (provide 'init-haskell)

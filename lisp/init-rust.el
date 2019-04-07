@@ -1,7 +1,7 @@
 (require-package 'rust-mode)
 
 ;; (after-load 'rust-mode
-;;   (after-load 'eglot
+;;   (when (maybe-require-package 'eglot)
 ;;     (add-hook 'rust-mode-hook 'eglot-ensure)))
 
 (when (maybe-require-package 'flycheck-rust)

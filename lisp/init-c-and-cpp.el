@@ -1,7 +1,7 @@
 (setq-default c-default-style "linux"
               c-basic-offset 4)
 
-(after-load 'eglot
+(when (maybe-require-package 'eglot)
   (add-hook 'c-mode-hook 'eglot-ensure)
   (add-hook 'c++-mode-hook 'eglot-ensure))
 

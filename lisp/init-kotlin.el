@@ -1,5 +1,5 @@
 ;; (when (maybe-require-package 'kotlin-mode)
-;;   (after-load 'eglot
+;;   (when (maybe-require-package 'eglot)
 ;;     (add-hook 'kotlin-mode-hook 'eglot-ensure)))
 
 (provide 'init-kotlin)
