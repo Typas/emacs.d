@@ -59,7 +59,8 @@
   (add-hook 'dhall-mode-hook 'stack-exec-path-mode))
 
 (after-load 'haskell-mode
-  (when (maybe-require-package 'eglot)
+  (when (and (executable-find "hie")
+             (maybe-require-package 'eglot))
     (add-hook 'haskell-mode-hook 'eglot-ensure)))
 
 (provide 'init-haskell)

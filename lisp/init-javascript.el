@@ -100,13 +100,14 @@
   (after-load 'js2-mode
     (add-hook 'js2-mode-hook 'add-node-modules-path)))
 
-(after-load 'js2-mode
-  (when (maybe-require-package 'eglot)
-    (add-hook 'js2-mode-hook 'eglot-ensure)))
-(after-load 'typescript-mode
-  (when (maybe-require-package 'eglot)
-    (add-hook 'typescript-mode-hook 'eglot-ensure)))
-;; (after-load 'json-mode
+;; (after-load 'js2-mode
+;;   (when (and (executable-find "")
+;;              (maybe-require-package 'eglot))
+;;     (add-hook 'js2-mode-hook 'eglot-ensure)))
+;; (after-load 'typescript-mode
+;;   (when (maybe-require-package 'eglot)
+;;     (add-hook 'typescript-mode-hook 'eglot-ensure)))
+;; ;; (after-load 'json-mode
 ;;   (when (maybe-require-package 'eglot)
 ;;     (add-hook 'json-mode-hook 'eglot-ensure)))
 
