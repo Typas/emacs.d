@@ -58,8 +58,8 @@
   (add-hook 'dhall-mode-hook 'sanityinc/no-trailing-whitespace)
   (add-hook 'dhall-mode-hook 'stack-exec-path-mode))
 
-;; (after-load 'haskell-mode
-;;   (when (maybe-require-package 'eglot)
-;;     (add-hook 'haskell-mode-hook 'eglot-ensure)))
+(after-load 'haskell-mode
+  (when (maybe-require-package 'eglot)
+    (add-hook 'haskell-mode-hook 'eglot-ensure)))
 
 (provide 'init-haskell)

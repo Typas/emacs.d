@@ -40,7 +40,8 @@
       (funcall orig edit-command)))
   (advice-add 'recompile :around 'sanityinc/find-prev-compilation))
 
-(define-key global-map (kbd "C-c r") 'recompile)
+(define-key global-map (kbd "C-c c c") 'compile)
+(define-key global-map (kbd "C-c c r") 'recompile)
 
 
 (defun sanityinc/shell-command-in-view-mode (start end command &optional output-buffer replace &rest other-args)

@@ -63,7 +63,6 @@
 
 ;;; Newline behaviour
 
-(global-set-key (kbd "RET") 'newline-and-indent)
 (defun sanityinc/newline-at-end-of-line ()
   "Move to end of line, enter a newline, and reindent."
   (interactive)
@@ -101,7 +100,7 @@
 
 (require-package 'browse-kill-ring)
 (setq browse-kill-ring-separator "\f")
-(global-set-key (kbd "M-Y") 'browse-kill-ring)
+(global-set-key (kbd "M-y") 'browse-kill-ring)
 (after-load 'browse-kill-ring
   (define-key browse-kill-ring-mode-map (kbd "C-g") 'browse-kill-ring-quit)
   (define-key browse-kill-ring-mode-map (kbd "M-n") 'browse-kill-ring-forward)
@@ -223,8 +222,8 @@
   (add-hook 'after-init-hook 'whole-line-or-region-mode)
   (after-load 'whole-line-or-region
     (diminish 'whole-line-or-region-local-mode))
-  (define-key global-map (kbd "C-c c") 'whole-line-or-region-comment-region)
-  (define-key global-map (kbd "C-c u") 'whole-line-or-region-uncomment-region))
+  (define-key global-map (kbd "C-c r c") 'whole-line-or-region-comment-region)
+  (define-key global-map (kbd "C-c r u") 'whole-line-or-region-uncomment-region))
 
 ;; Some local minor modes clash with CUA rectangle selection
 
@@ -318,5 +317,18 @@ With arg N, insert N newlines."
   (setq untabify-this-buffer (not (derived-mode-p 'makefile-mode)))
   (add-hook 'before-save-hook #'untabify-all))
 (add-hook 'prog-mode-hook 'untabify-mode)
+(after-load 'untabify
+  (diminish 'untabify-mode))
+
+;; yasnippet
+(when (maybe-require-package 'yasnippet)
+  (yas-global-mode 1)
+  (after-load 'yasnippet
+    (diminish 'yas-global-mode))
+  (define-key global-map (kbd "C-c y i") 'yas-insert-snippet)
+  (define-key global-map (kbd "C-c y n") 'yas-new-snippet)
+  (define-key global-map (kbd "C-c y v") 'yas-visit-snippet-file)
+  (define-key global-map (kbd "C-c y l") 'yas-load-snippet-buffer)
+  (define-key global-map (kbd "C-c y t") 'yas-tryout-snippet))
 
 (provide 'init-editing-utils)

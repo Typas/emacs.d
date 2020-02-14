@@ -8,12 +8,12 @@
            (maybe-require-package 'ag))
   (require-package 'wgrep-ag)
   (setq-default ag-highlight-search t)
-  (global-set-key (kbd "M-?") 'ag-project))
+  (global-set-key (kbd "C-c /") 'ag-project))
 
 (when (and (executable-find "rg")
            (maybe-require-package 'rg))
   (maybe-require-package 'deadgrep)
-  (global-set-key (kbd "M-?") 'rg-project))
+  (global-set-key (kbd "C-c /") 'rg-project))
 
 
 (provide 'init-grep)

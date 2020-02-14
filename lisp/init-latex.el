@@ -10,8 +10,7 @@
     (when (maybe-require-package 'company-auctex)
       (company-auctex-init))))
 
-;; (when (maybe-require-package 'eglot)
-;;   (add-to-list 'eglot-server-programs '(LaTeX-mode . ("latex-lsp")))
-;;   (add-hook 'LaTeX-mode-hook 'eglot-ensure))
+(when (maybe-require-package 'eglot)
+  (add-hook 'LaTeX-mode-hook 'eglot-ensure))
 
 (provide 'init-latex)
