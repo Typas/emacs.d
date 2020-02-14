@@ -35,6 +35,8 @@
       auto-revert-verbose nil)
 (after-load 'autorevert
   (diminish 'auto-revert-mode))
+(after-load 'eldoc
+  (diminish 'eldoc-mode))
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
@@ -312,19 +314,17 @@ With arg N, insert N newlines."
   "Untabify the current buffer, unless `untabify-this-buffer' is nil."
   (and untabify-this-buffer (untabify (point-min) (point-max))))
 (define-minor-mode untabify-mode
-  "Untabify buffer on save." nil " untab" nil
+  "Untabify buffer on save." nil "" nil
   (make-variable-buffer-local 'untabify-this-buffer)
   (setq untabify-this-buffer (not (derived-mode-p 'makefile-mode)))
   (add-hook 'before-save-hook #'untabify-all))
 (add-hook 'prog-mode-hook 'untabify-mode)
-(after-load 'untabify
-  (diminish 'untabify-mode))
 
 ;; yasnippet
 (when (maybe-require-package 'yasnippet)
   (yas-global-mode 1)
   (after-load 'yasnippet
-    (diminish 'yas-global-mode))
+    (diminish 'yas-minor-mode))
   (define-key global-map (kbd "C-c y i") 'yas-insert-snippet)
   (define-key global-map (kbd "C-c y n") 'yas-new-snippet)
   (define-key global-map (kbd "C-c y v") 'yas-visit-snippet-file)

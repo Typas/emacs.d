@@ -24,6 +24,7 @@
 ;; Suspend page-break-lines-mode while company menu is active
 ;; (see https://github.com/company-mode/company-mode/issues/416)
 (after-load 'company
+  (diminish 'company-mode)
   (after-load 'page-break-lines
     (defvar-local sanityinc/page-break-lines-on-p nil)
 
