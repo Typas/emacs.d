@@ -146,8 +146,6 @@
 ;;----------------------------------------------------------------------------
 ;; Handy key bindings
 ;;----------------------------------------------------------------------------
-(global-set-key (kbd "C-.") 'set-mark-command)
-(global-set-key (kbd "C-x C-.") 'pop-global-mark)
 
 (when (maybe-require-package 'avy)
   (global-set-key (kbd "C-;") 'avy-goto-char-timer))
@@ -224,8 +222,8 @@
   (add-hook 'after-init-hook 'whole-line-or-region-mode)
   (after-load 'whole-line-or-region
     (diminish 'whole-line-or-region-local-mode))
-  (define-key global-map (kbd "C-c r c") 'whole-line-or-region-comment-region)
-  (define-key global-map (kbd "C-c r u") 'whole-line-or-region-uncomment-region))
+  (global-set-key (kbd "C-c c") 'whole-line-or-region-comment-region)
+  (global-set-key (kbd "C-c u") 'whole-line-or-region-uncomment-region))
 
 ;; Some local minor modes clash with CUA rectangle selection
 
@@ -314,21 +312,42 @@ With arg N, insert N newlines."
   "Untabify the current buffer, unless `untabify-this-buffer' is nil."
   (and untabify-this-buffer (untabify (point-min) (point-max))))
 (define-minor-mode untabify-mode
-  "Untabify buffer on save." nil "" nil
+  "Untabify buffer on save." nil nil nil
   (make-variable-buffer-local 'untabify-this-buffer)
   (setq untabify-this-buffer (not (derived-mode-p 'makefile-mode)))
   (add-hook 'before-save-hook #'untabify-all))
 (add-hook 'prog-mode-hook 'untabify-mode)
+(after-load 'untabify
+  (diminish 'untabify))
 
 ;; yasnippet
 (when (maybe-require-package 'yasnippet)
   (yas-global-mode 1)
   (after-load 'yasnippet
     (diminish 'yas-minor-mode))
-  (define-key global-map (kbd "C-c y i") 'yas-insert-snippet)
-  (define-key global-map (kbd "C-c y n") 'yas-new-snippet)
-  (define-key global-map (kbd "C-c y v") 'yas-visit-snippet-file)
-  (define-key global-map (kbd "C-c y l") 'yas-load-snippet-buffer)
-  (define-key global-map (kbd "C-c y t") 'yas-tryout-snippet))
+  (define-prefix-command 'yas-prefix-map)
+  (global-set-key (kbd "C-c y") 'yas-prefix-map)
+  (define-key yas-prefix-map (kbd "i") 'yas-insert-snippet)
+  (define-key yas-prefix-map (kbd "n") 'yas-new-snippet)
+  (define-key yas-prefix-map (kbd "v") 'yas-visit-snippet-file)
+  (define-key yas-prefix-map (kbd "l") 'yas-load-snippet-buffer)
+  (define-key yas-prefix-map (kbd "t") 'yas-tryout-snippet)
+
+  ;; Auto add HEADER in new file
+  (add-hook 'find-file-hook
+            '(lambda ()
+               (when (and (buffer-file-name)
+                          (not (file-exists-p (buffer-file-name)))
+                          (= (point-max) 1))
+                 (let ((header-snippet "HEADER")
+                       (yas/fallback-behavior 'return-nil))
+                   (insert header-snippet)
+                   ;; if can't expand snippet, delete insert string
+                   (if (not (yas/expand))
+                       (delete-region (point-min) (point-max))))))))
+
+;; abbrev mode
+(after-load 'abbrev
+  (diminish 'abbrev-mode))
 
 (provide 'init-editing-utils)

@@ -16,7 +16,7 @@
                   company-idle-delay 0.2
                   company-selection-wrap-around t ;; cycle selection
                   company-dabbrev-downcase nil
-                  company-minimum-prefix-length 2))
+                  company-minimum-prefix-length 3))
   (global-set-key (kbd "M-C-/") 'company-complete)
   (when (maybe-require-package 'company-quickhelp)
     (add-hook 'after-init-hook 'company-quickhelp-mode)))

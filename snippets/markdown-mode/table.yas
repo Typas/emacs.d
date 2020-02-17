@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: Table
+# key: table
+# --
+| ${1:header} | ${2:header} |
+| --- | --- |
+| $3 | $4 |
+$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: include standard library
+# key: incs
+# --
+#include <$1>
+$0

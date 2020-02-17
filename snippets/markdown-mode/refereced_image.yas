@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Referenced Image
+# key: img
+# --
+![$1][${2:Ref label}] $0

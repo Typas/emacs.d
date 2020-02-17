@@ -3,15 +3,15 @@
 
 (maybe-require-package 'org-cliplink)
 
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; subscript must be embraced with {}
 (setq org-use-sub-superscripts "{}"       ;; remove footnote of html
       org-html-postamble nil              ;; export to html5
       org-html-html5-fancy t
       org-html-doctype "html5"
-	  org-export-with-section-numbers nil ;; remove numbering
+      org-export-with-section-numbers nil ;; remove numbering
       org-export-preserve-breaks t) ;; linebreaks
 
 

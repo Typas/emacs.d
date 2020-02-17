@@ -14,7 +14,7 @@
 
     ;; IDO-style directory navigation
     (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
-    (define-key ivy-minibuffer-map (kbd "C-j") nil)
+    (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-immediate-done)
     (dolist (k '("C-RET"))
       (define-key ivy-minibuffer-map (kbd k) #'ivy-immediate-done))
     (define-key ivy-minibuffer-map (kbd "<up>") #'ivy-previous-line-or-history)
@@ -33,7 +33,7 @@
 
 ;; swiper configs
 (when (maybe-require-package 'swiper)
-  (define-key global-map (kbd "C-s") 'swiper)
+  (global-set-key (kbd "C-s") 'swiper)
   (after-load 'ivy
     (defun sanityinc/swiper-at-point (sym)
       "Use `swiper' to search for the symbol at point."
@@ -45,8 +45,8 @@
 ;; counsel configs
 (when (maybe-require-package 'counsel)
   (setq-default counsel-mode-override-describe-bindings t)
-  (define-key global-map (kbd "M-x") 'counsel-M-x)
-  (define-key global-map (kbd "C-x C-f") 'counsel-find-file)
+  (global-set-key (kbd "M-x") 'counsel-M-x)
+  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
   (after-load 'counsel
     (diminish 'counsel-mode))
   (add-hook 'after-init-hook 'counsel-mode)

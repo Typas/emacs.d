@@ -3,7 +3,7 @@
 
 (load-theme 'sanityinc-tomorrow-eighties t)
 
-(define-key global-map (kbd "C-c s t") #'switch-theme-variant)
+(global-set-key (kbd "C-c t") #'switch-theme-variant)
 
 (defvar *current-theme-dark* 'sanityinc-tomorrow-eighties)
 (defvar *current-theme-light* 'solarized-light)

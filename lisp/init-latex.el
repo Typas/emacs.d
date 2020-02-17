@@ -10,8 +10,10 @@
     (when (maybe-require-package 'company-auctex)
       (company-auctex-init))))
 
-(when (and (executable-find "texlab")
-           (maybe-require-package 'eglot))
-  (add-hook 'LaTeX-mode-hook 'eglot-ensure))
+(when (maybe-require-package 'eglot)
+  (add-hook 'LaTeX-mode-hook 'eglot-ensure)
+  (when (executable-find "texlab")
+    (after-load 'eglot
+      (add-to-list 'eglot-server-programs '((tex-mode context-mode texinfo-mode bibtex-mode) . ("texlab"))))))
 
 (provide 'init-latex)

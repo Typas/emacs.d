@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: include local library
+# key: incl
+# --
+#include "$1"
+$0

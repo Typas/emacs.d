@@ -1,0 +1,56 @@
+# -*- mode: snippet -*-
+# name: Latex header
+# key: HEADER
+# --
+\documentclass[12pt,a4paper,xetex]{article}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{xeCJK}
+\usepackage{mathtools}
+\usepackage{diffcoeff}
+\usepackage{parskip}
+\usepackage{listings}
+\usepackage[vlined]{algorithm2e}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tabu}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{$1}
+\setmainfont{XITS}
+\setmathfont{XITS Math}
+\setCJKmainfont{Noto Serif CJK TC} % xeCJK
+\setCJKsansfont{Noto Sans CJK TC} % xeCJK
+\setCJKmonofont{Noto Sans Mono CJK TC} % xeCJK
+\setlength{\parskip}{.5em} % parskip
+\setlength{\parindent}{2em} % parskip
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+\linespread{1.36}
+\titleformat{\section}{\Large\bfseries}{\thesection.\,}{1em}{} % titlesec
+\titleformat{\subsection}{\large\bfseries}{\thesubsection\,}{1em}{} % titlesec
+\lstset{
+  frame=tb, % draw a frame at the top and bottom of the code block
+  tabsize=3, % tab space width
+  showstringspaces=false, % don't mark spaces in strings
+  % numbers=left, % display line numbers on the left
+  commentstyle=\color{gray}, % comment color
+  keywordstyle=\color{blue}, % keyword color
+  stringstyle=\color{brown}, % string color
+  linewidth=\textwidth{},
+  breaklines=true,
+  breakatwhitespace=true,
+  basicstyle=\footnotesize\ttfamily
+} % xcolor, listings
+
+\title{$2}
+\date{\today}
+\author{$3}
+
+\begin{document}
+\maketitle
+
+$0
+
+\end{document}
