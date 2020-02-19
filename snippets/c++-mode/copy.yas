@@ -2,5 +2,4 @@
 # name: copy
 # key: cp
 # --
-std::copy(std::begin(${1:container}), std::end($1), std::begin($2));
-$0
+std::copy(std::begin(${1:container}), std::end($1), std::begin($2));$0

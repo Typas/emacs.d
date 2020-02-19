@@ -2,4 +2,4 @@
 # name: endl
 # key: el
 # --
-std::endl $0
+std::endl

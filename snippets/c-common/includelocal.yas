@@ -2,5 +2,4 @@
 # name: include local library
 # key: incl
 # --
-#include "$1"
-$0
+#include "$1"$0

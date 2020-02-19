@@ -2,4 +2,4 @@
 # name: emphasis
 # key: emph
 # --
-\emph{$1}$0
+\emph{$1}

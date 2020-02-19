@@ -2,4 +2,4 @@
 # name: product
 # key: prod
 # --
-\prod_{$1}^{$2}$0
+\prod_{$1}^{$2}

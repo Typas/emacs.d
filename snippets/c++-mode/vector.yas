@@ -3,4 +3,3 @@
 # key: vec
 # --
 std::vector<${1:Class}> ${2:var}${3:($4)};
-$0
