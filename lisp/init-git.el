@@ -6,9 +6,12 @@
 
 (when (maybe-require-package 'magit)
   (setq-default magit-diff-refine-hunk t)
-  (maybe-require-package 'magit-todos)
   (global-set-key (kbd "C-x g") 'magit-status)
   (global-set-key (kbd "C-c g") 'magit-dispatch-popup))
+
+(after-load 'magit
+  (maybe-require-package 'magit-todos)
+  (magit-todos-mode 1))
 
 (when (maybe-require-package 'git-commit)
   (add-hook 'git-commit-mode-hook 'goto-address-mode))
