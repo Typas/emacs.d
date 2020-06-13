@@ -31,6 +31,7 @@
  truncate-partial-width-windows nil)
 
 (add-hook 'after-init-hook 'global-auto-revert-mode)
+(add-hook 'after-init-hook 'global-subword-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
 (after-load 'autorevert
