@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: listing file
-# key: lf
-# --
-
-\lstinputlisting{${1:filename}}

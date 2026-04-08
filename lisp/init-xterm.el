@@ -1,3 +1,7 @@
+;;; init-xterm.el --- Integrate with terminals such as xterm -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
+
 (require 'init-frame-hooks)
 
 (global-set-key [mouse-4] (lambda () (interactive) (scroll-down 1)))
@@ -5,12 +9,13 @@
 
 (autoload 'mwheel-install "mwheel")
 
-(defun typas/console-frame-setup ()
+(defun sanityinc/console-frame-setup ()
   (xterm-mouse-mode 1) ; Mouse in a terminal (Use shift to paste with middle button)
-  (mwheel-install)
-  (setq mouse-wheel-scroll-amount '(0 ((shift) . 1)))
-  (setq mouse-wheel-progressive-speed nil))
+  (mwheel-install))
 
-(add-hook 'after-make-console-frame-hooks 'typas/console-frame-setup)
+
+
+(add-hook 'after-make-console-frame-hooks 'sanityinc/console-frame-setup)
 
 (provide 'init-xterm)
+;;; init-xterm.el ends here

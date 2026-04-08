@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: align
-# key: align
-# --
-\begin{align}
-\label{$1}
-  $0
-\end{align}

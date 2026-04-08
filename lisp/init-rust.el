@@ -1,10 +1,11 @@
-(require-package 'rust-mode)
+;;; init-rust.el --- Support for the Rust language -*- lexical-binding: t -*-
+;;; Commentary:
+;;; Code:
 
-(after-load 'rust-mode
-  (when (and (executable-find "rls")
-             (maybe-require-package 'eglot))
-    (add-hook 'rust-mode-hook 'eglot-ensure))
-  (define-key rust-mode-map (kbd "C-x c") 'rust-compile)
-  (define-key rust-mode-map (kbd "C-x r") 'rust-run))
+(when (maybe-require-package 'rust-mode)
+  (when (maybe-require-package 'flycheck-rust)
+    (with-eval-after-load 'rust-mode
+      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup))))
 
 (provide 'init-rust)
+;;; init-rust.el ends here
