@@ -12,6 +12,7 @@
 /lspsvr/
 /site-lisp/package/
 /transient/
+/eln-cache/
 
 # private files
 
@@ -38,3 +39,4 @@ cookies
 *.elc
 *~
 \#*
+.emacs.desktop*
